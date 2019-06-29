@@ -1724,7 +1724,7 @@ namespace Hic_music {
      * @param ms tone duration in milliseconds (ms)
      */
     //% help=music/play-tone weight=90
-    //% blockId=device_play_note block="play|tone %note=device_note|for %duration=device_beat" blockGap=8
+    //% blockId=hicbit_play_note block="play|tone %note=hicbit_note|for %duration=hicbit_beat" blockGap=8
     //% parts="headphone"
     //% useEnumVal=1
     export function playTone(frequency: number, ms: number): void {
@@ -1737,7 +1737,7 @@ namespace Hic_music {
      * @param frequency pitch of the tone to play in Hertz (Hz), eg: Note.C
      */
     //% help=music/ring-tone weight=80
-    //% blockId=device_ring block="ring tone (Hz)|%note=device_note" blockGap=8
+    //% blockId=hicbit_ring block="ring tone (Hz)|%note=hicbit_note" blockGap=8
     //% parts="headphone"
     //% useEnumVal=1
     export function ringTone(frequency: number): void {
@@ -1749,7 +1749,7 @@ namespace Hic_music {
      * @param ms rest duration in milliseconds (ms)
      */
     //% help=music/rest weight=79
-    //% blockId=device_rest block="rest(ms)|%duration=device_beat"
+    //% blockId=hicbit_rest block="rest(ms)|%duration=hicbit_beat"
     //% parts="headphone"
     export function rest(ms: number): void {
         playTone(0, ms);
@@ -1761,7 +1761,7 @@ namespace Hic_music {
      * @param name the note name
      */
     //% weight=50 help=music/note-frequency
-    //% blockId=device_note block="%name"
+    //% blockId=hicbit_note block="%name"
     //% shim=TD_ID color="#FFFFFF" colorSecondary="#FFFFFF"
     //% name.fieldEditor="note" name.defl="262"
     //% name.fieldOptions.decompileLiterals=true
@@ -1778,7 +1778,7 @@ namespace Hic_music {
      * Returns the duration of a beat in milli-seconds
      */
     //% help=music/beat weight=49
-    //% blockId=device_beat block="%fraction|beat"
+    //% blockId=hicbit_beat block="%fraction|beat"
     export function beat(fraction?: BeatFraction): number {
         init();
         if (fraction == null) fraction = BeatFraction.Whole;
@@ -1798,7 +1798,7 @@ namespace Hic_music {
      * Returns the tempo in beats per minute. Tempo is the speed (bpm = beats per minute) at which notes play. The larger the tempo value, the faster the notes will play.
      */
     //% help=music/tempo weight=40
-    //% blockId=device_tempo block="tempo (bpm)" blockGap=8
+    //% blockId=hicbit_tempo block="tempo (bpm)" blockGap=8
     export function tempo(): number {
         init();
         return beatsPerMinute;
@@ -1809,7 +1809,7 @@ namespace Hic_music {
      * @param bpm The change in beats per minute to the tempo, eg: 20
      */
     //% help=music/change-tempo-by weight=39
-    //% blockId=device_change_tempo block="change tempo by (bpm)|%value" blockGap=8
+    //% blockId=hicbit_change_tempo block="change tempo by (bpm)|%value" blockGap=8
     export function changeTempoBy(bpm: number): void {
         init();
         setTempo(beatsPerMinute + bpm);
@@ -1820,7 +1820,7 @@ namespace Hic_music {
      * @param bpm The new tempo in beats per minute, eg: 120
      */
     //% help=music/set-tempo weight=38
-    //% blockId=device_set_tempo block="set tempo to (bpm)|%value"
+    //% blockId=hicbit_set_tempo block="set tempo to (bpm)|%value"
     //% bpm.min=4 bpm.max=400
     export function setTempo(bpm: number): void {
         init();
@@ -1837,7 +1837,7 @@ namespace Hic_music {
      * @param name the note name, eg: Note.C
      */
     //% weight=50 help=music/builtin-melody
-    //% blockId=device_builtin_melody block="%melody"
+    //% blockId=hicbit_builtin_melody block="%melody"
     //% blockHidden=true
     export function builtInMelody(melody: Melodies): string[] {
         return getMelody(melody);
@@ -1859,7 +1859,7 @@ namespace Hic_music {
      * @param options melody options, once / forever, in the foreground / background
      */
     //% help=music/begin-melody weight=60 blockGap=16
-    //% blockId=device_start_melody block="start melody %melody=device_builtin_melody| repeating %options"
+    //% blockId=hicbit_start_melody block="start melody %melody=hicbit_builtin_melody| repeating %options"
     //% parts="headphone"
     export function beginMelody(melodyArray: string[], options: MelodyOptions = 1) {
         init();
@@ -1901,7 +1901,7 @@ namespace Hic_music {
      * @param options which melody to stop
      */
     //% help=music/stop-melody weight=59 blockGap=16
-    //% blockId=device_stop_melody block="stop melody $options"
+    //% blockId=hicbit_stop_melody block="stop melody $options"
     //% parts="headphone"
     export function stopMelody(options: MelodyStopOptions) {
         if (options & MelodyStopOptions.Foreground)
